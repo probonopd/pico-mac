@@ -21,7 +21,7 @@ jobs:
           wget "https://archive.org/download/Macintosh_ROMs_Collection_1990s/Mac_ROMs.zip/Mac_ROMs%2F68k%2F128k%2FMacintosh%20Plus%2F1986-03%20-%204D1F8172%20-%20MacPlus%20v3.ROM" -O "4D1F8172 - MacPlus v3.ROM"
           # wget -q "http://retro.bluescsi.com/PicoMac-DemoDsk.zip"
           # unzip PicoMac-DemoDsk.zip
-          wget 'https://dl-alt1.winworldpc.com/Apple%20Mac%20OS%20(System%203.2%20Finder%205.3)%20(System%20Tools%201.1%20Mac%20Plus)%20(Jun%201986)%20(3.5-800k).7z' -O disk.7z
+          wget "https://dl-alt1.winworldpc.com/Apple%20Mac%20OS%20(System%203.2%20Finder%205.3)%20(System%20Tools%201.1%20Mac%20Plus)%20(Jun%201986)%20(3.5-800k).7z"
           7z x disk.7z 'Apple Mac OS (System 3.2 Finder 5.3) (System Tools 1.1 Mac Plus) (Jun 1986) (3.5-800k)/System Tools Plus.img'
           mv 'System Tools Plus.img' DEMO.dsk
           
