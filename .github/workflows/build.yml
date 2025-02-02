@@ -27,7 +27,7 @@ jobs:
         run: |
           export PATH=$(readlink -f ./cmake-*-linux-x86_64/bin):$PATH
           export PICO_SDK_PATH=$(readlink -f ./pico-sdk)
-          for res in "classic" "vga"; do
+          for res in "vga" "classic" ; do
             cd external/umac/
             rm -f main 2>/dev/null || true
             if [ "$res" == "vga" ] ; then
