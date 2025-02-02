@@ -18,6 +18,7 @@ jobs:
           tar xf cmake-*-linux-x86_64.tar.gz
           git submodule update --init --recursive
           git clone --recursive https://github.com/raspberrypi/pico-sdk
+          find . -name 'umac-disc.h'
 
       - name: Build pico-mac
         run: |
