@@ -39,7 +39,7 @@ jobs:
             rm -rf build || true
             mkdir build
             cd build
-            cmake .. -DMEMSIZE=208 -DUSE_VGA_RES=1 -DVIDEO_PIN=$pin
+            cmake .. -DMEMSIZE=208 -DUSE_VGA_RES=1 -DVIDEO_PIN=$pin -DUSE_SD=true
             make -j$(nproc)
             cd ..
             make -C build -j $(nproc)
