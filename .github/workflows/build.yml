@@ -46,9 +46,9 @@ jobs:
               mkdir build
               cd build
               if [ "$res" == "vga" ] ; then
-                cmake .. -DMEMSIZE=208 -DUSE_VGA_RES=1 -DVIDEO_PIN=$pin -DUSE_SD=true -DPICO_FLASH_SIZE_BYTES=10485760
+                cmake .. -DMEMSIZE=208 -DUSE_VGA_RES=1 -DVIDEO_PIN=$pin -DUSE_SD=true -DPICO_BOARD=weact_studio_rp2040_16mb
               else
-                cmake .. -DMEMSIZE=208 -DVIDEO_PIN=$pin -DUSE_SD=true -DPICO_FLASH_SIZE_BYTES=10485760
+                cmake .. -DMEMSIZE=208 -DVIDEO_PIN=$pin -DUSE_SD=true -DPICO_BOARD=weact_studio_rp2040_16mb
               fi
               make -j$(nproc)
               cd ..
