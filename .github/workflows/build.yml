@@ -25,10 +25,10 @@ jobs:
           # unzip disk.zip
       - name: Build and upload firmware
         run: |
-          git submodule foreach git clean -fd
           export PATH=$(readlink -f ./cmake-*-linux-x86_64/bin):$PATH
           export PICO_SDK_PATH=$(readlink -f ./pico-sdk)
           for res in "vga" "classic" ; do
+          git submodule foreach git clean -fd
             cd external/umac/
             if [ "$res" == "vga" ] ; then
               echo "Using VGA resolution"
