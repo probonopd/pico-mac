@@ -9,8 +9,10 @@ jobs:
     steps:
       - name: Checkout code and install dependencies
         uses: actions/checkout@v3
-        with:
-          submodules: true
+
+      - name: Recursively clone submodules
+        run: |
+          git submodule update --init --recursive
 
       - name: Install dependencies
         run: |
