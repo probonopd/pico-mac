@@ -19,11 +19,9 @@ jobs:
           git submodule update --init --recursive
           git clone --recursive https://github.com/raspberrypi/pico-sdk
           wget "https://archive.org/download/Macintosh_ROMs_Collection_1990s/Mac_ROMs.zip/Mac_ROMs%2F68k%2F128k%2FMacintosh%20Plus%2F1986-03%20-%204D1F8172%20-%20MacPlus%20v3.ROM" -O "4D1F8172 - MacPlus v3.ROM"
-          # wget -q "http://retro.bluescsi.com/PicoMac-DemoDsk.zip"
-          # unzip PicoMac-DemoDsk.zip
           wget "https://archive.org/download/apple-mac-os-system-3.2-finder-5.3-system-tools-1.0-512-ke-jun-1986-3.5-800k.-7z/Apple%20Mac%20OS%20%28System%203.2%20Finder%205.3%29%20%28System%20Tools%201.0%20512Ke%29%20%28Jun%201986%29%20%283.5-800k%29.7z/Apple%20Mac%20OS%20%28System%203.2%20Finder%205.3%29%20%28System%20Tools%201.0%20512Ke%29%20%28Jun%201986%29%20%283.5-800k%29%2FSystem%20Tools%20512ke%20v1.0.img" -O DEMO.dsk
-          
-      - name: Build pico-mac
+
+      - name: Build and upload firmware
         run: |
           export PATH=$(readlink -f ./cmake-*-linux-x86_64/bin):$PATH
           export PICO_SDK_PATH=$(readlink -f ./pico-sdk)
@@ -35,16 +33,22 @@ jobs:
           mkdir -p incbin
           xxd -i < rom.bin > incbin/umac-rom.h
           xxd -i < DEMO.dsk > incbin/umac-disc.h
-          mkdir build
-          cd build
-          cmake .. -DMEMSIZE=208 -DUSE_VGA_RES=1 -DVIDEO_PIN=9
-          make -j$(nproc)
-          cd ..
-          make -C build -j $(nproc)
 
-      - name: Upload firmware.uf2 as artifact
+          for pin in 18 9; do
+            rm -rf build
+            mkdir build
+            cd build
+            cmake .. -DMEMSIZE=208 -DUSE_VGA_RES=1 -DVIDEO_PIN=$pin
+            make -j$(nproc)
+            cd ..
+            make -C build -j $(nproc)
+            mkdir -p artifacts/pin-$pin
+            cp build/firmware.uf2 artifacts/pin-$pin/
+          done
+
+      - name: Upload firmware as artifact
         uses: actions/upload-artifact@v4
         with:
-          name: firmware.uf2
-          path: build/firmware.uf2
+          name: firmware
+          path: artifacts
           retention-days: 3
