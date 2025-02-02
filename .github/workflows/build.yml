@@ -20,6 +20,7 @@ jobs:
           git clone --recursive https://github.com/raspberrypi/pico-sdk
           wget "https://archive.org/download/Macintosh_ROMs_Collection_1990s/Mac_ROMs.zip/Mac_ROMs%2F68k%2F128k%2FMacintosh%20Plus%2F1986-03%20-%204D1F8172%20-%20MacPlus%20v3.ROM" -O "4D1F8172 - MacPlus v3.ROM"
           # wget "https://archive.org/download/apple-mac-os-system-3.2-finder-5.3-system-tools-1.0-512-ke-jun-1986-3.5-800k.-7z/Apple%20Mac%20OS%20%28System%203.2%20Finder%205.3%29%20%28System%20Tools%201.0%20512Ke%29%20%28Jun%201986%29%20%283.5-800k%29.7z/Apple%20Mac%20OS%20%28System%203.2%20Finder%205.3%29%20%28System%20Tools%201.0%20512Ke%29%20%28Jun%201986%29%20%283.5-800k%29%2FSystem%20Tools%20512ke%20v1.0.img" -O disk.img
+          # Made with: truncate -s 12M disk.img, then copied contents of the disk above and additional content using Mini vMac
           wget "https://github.com/probonopd/pico-mac/releases/download/ingredients/disk.zip"
           unzip disk.zip
       - name: Build and upload firmware
