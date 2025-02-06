@@ -98,7 +98,7 @@ endif()
 add_compile_definitions(GPIO_VID_BASE=${VIDEO_PIN})
 
 if (SWITCH_ALT_GUI)
-    add_definitions(-DSWITCH_ALT_GUI)
+    add_compile_definitions(SWITCH_ALT_GUI=1)
 endif()
 
 if (TARGET tinyusb_device)
