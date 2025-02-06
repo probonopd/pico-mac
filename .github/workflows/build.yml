@@ -63,9 +63,11 @@ jobs:
             done
           done
 
-      - name: Upload firmware as artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: artifacts
-          retention-days: 3
+      - name: Upload files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          ls -lh out/* # Assuming you have some files in out/ that you would like to upload
+          wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+          bash upload.sh out/*
